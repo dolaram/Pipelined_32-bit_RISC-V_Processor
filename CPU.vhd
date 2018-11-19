@@ -357,21 +357,7 @@ begin
         memreg_mem_wb <= memreg_ex_mem;
     end if;
 end process;
---%%%%%%%%%%%%% WB_ALU STAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-WB_ALU:process(clk,rst)
-begin
-    if(rst = '1') then
-        wr_dt_wb_alu <= (others=>'0');
-        wr_wb_alu <= (others=>'0');
-        --control signal
-        rwr_wb_alu <= '0';
-    elsif(rising_edge(clk)) then 
-        wr_dt_wb_alu <= wr_dt;
-        wr_wb_alu <= wr_mem_wb;
-        --control signal
-        rwr_wb_alu <= rwr_mem_wb;
-    end if;
-end process;
+
 --%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 --___________________________ updated
 wr_dt <= ALU_result_mem_wb when memreg_mem_wb = '0' else
